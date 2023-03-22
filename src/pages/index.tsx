@@ -12,10 +12,13 @@ export default function Home({ todos }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div>
-        <h3>Next 13 app</h3>
+        <h3>TODOS LIST :</h3>
 
         {todos.map((todo: any) => (
-          <p key={todo.id} style={{ marginTop: "10px" }}>
+          <p
+            key={todo.id}
+            style={{ marginTop: "10px", textDecoration: "underline" }}
+          >
             <Link href={"/todos/" + todo.id}>{todo.todo}</Link>
           </p>
         ))}

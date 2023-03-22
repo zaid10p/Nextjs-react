@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 export default function Todos({ todo }: any) {
@@ -12,6 +13,9 @@ export default function Todos({ todo }: any) {
 
   return (
     <div>
+      <Head>
+        <title>Todo info</title>
+      </Head>
       <h3>{todo.todo}</h3>
       <p>Completed : {todo.completed.toString()}</p>
     </div>

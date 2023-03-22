@@ -5,7 +5,6 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ todos }: any) {
-  console.log(todos);
   return (
     <>
       <Head>
@@ -25,14 +24,19 @@ export default function Home({ todos }: any) {
   );
 }
 
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max);
+}
+
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch("https://dummyjson.com/todos?limit=10");
+  const url = "https://dummyjson.com/todos?limit=" + getRandomInt(25);
+  const res = await fetch(url);
   const { todos } = await res.json();
   return {
     props: {
       todos,
     },
+    // after 5 seconds it will revalidate and get new data with random limit
+    revalidate: 5,
   };
 }
